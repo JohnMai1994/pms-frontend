@@ -55,10 +55,16 @@ const PasswordPhone = Loadable({
     loading: Loading
 })
 
-// Computer 电脑设备
 
-const AllComputer = Loadable({
-    loader: () => import('./Menu/Computer/allComputer'),
+// Equipment 设备
+
+const ComputerEquipment = Loadable({
+    loader: () => import('./Menu/Equipment/computerEquipment'),
+    loading: Loading
+})
+
+const OtherEquipment = Loadable({
+    loader: () => import('./Menu/Equipment/otherEquipment'),
     loading: Loading
 })
 
@@ -86,7 +92,8 @@ export {
     BillPhone,
     CurrentPhone,
     // 电脑
-    AllComputer,
+    ComputerEquipment,
+    OtherEquipment,
     // 其他
     Monitor,
 }

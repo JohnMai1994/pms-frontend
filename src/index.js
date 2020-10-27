@@ -16,9 +16,14 @@ import "./css/index.less"
 ReactDOM.render(
     <ConfigProvider locale={zhCN}>
         <Router >
-            {/* Route 路由的映射表 1. 公共的， 2. 私有的*/}
+            {/*
+            Route 路由的映射表：
+                1. 公共的
+                2. 私有的
+            */}
             <Switch>
                 {/*1. 私有的操作，必须是在登陆后才可以访问*/}
+
                 <Route path="/admin" render={(rootProps) => {
                     // 到时候做授权的检测
                     return <App {...rootProps} />
@@ -26,6 +31,7 @@ ReactDOM.render(
 
 
                 {/*2. 公共的*/}
+
                 {
                     commentRoutes.map((item, index) => {
                         return (

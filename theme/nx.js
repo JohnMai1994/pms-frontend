@@ -1,9 +1,9 @@
 module.exports = {
-    '@primary-color': '#f00',
-    '@link-color': '#1890ff',
+    '@primary-color': '#1890ff',
+    '@link-color': '#36cfc9',
     '@success-color': '#52c41a',
-    '@warning-color': '#faad14',
-    '@error-color': '#f5222d',
+    '@warning-color': '#fff566',
+    '@error-color': '#f759ab',
     '@font-size-base': '14px',
     '@heading-color': 'rgba(0, 0, 0, 0.85)',
     '@text-color': 'rgba(0, 0, 0, 0.65)',

@@ -4,7 +4,6 @@ import './App.less';
 import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 import {privateRoutes} from "./routers"
 import FrameOut from "./components/FrameOut";
-import {CconestepEmail} from "./views";
 
 class App extends React.Component {
     render() {
@@ -20,6 +19,7 @@ class App extends React.Component {
                     <Route path={privateRoutes[1].children[1].pathname} component={privateRoutes[1].children[1].component}  />
                     <Route path={privateRoutes[1].children[2].pathname} component={privateRoutes[1].children[2].component}  />
                     <Route path={privateRoutes[2].children[0].pathname} component={privateRoutes[2].children[0].component}  />
+                    <Route path={privateRoutes[2].children[1].pathname} component={privateRoutes[2].children[1].component}  />
                     <Route path={privateRoutes[3].children[0].pathname} component={privateRoutes[3].children[0].component}  />
 
                     {/*不知道为啥不行TvT*/}

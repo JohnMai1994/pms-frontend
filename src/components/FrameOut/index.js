@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
-import {CaretDownOutlined, CaretRightOutlined  } from '@ant-design/icons';
+import {Layout, Menu, Breadcrumb, Button} from 'antd';
+import {CaretDownOutlined, CaretRightOutlined, MenuUnfoldOutlined ,MenuFoldOutlined  } from '@ant-design/icons';
 import {withRouter} from "react-router-dom"
 
 
@@ -12,31 +12,39 @@ const { Header, Content, Sider } = Layout;
 
 // 左侧的菜单，只显示isShow:true
 var Menus = privateRoutes.filter(item => {
-
-
     return item.isShow === true;
 })
 
 
 class FrameOut extends Component {
+    state = {
+        collapsed: false,
+    };
 
-    menuHandler = ({ key}) => {
-        // console.log(this.props)
+    toggle = () => {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
+    };
 
 
+    menuHandler = ({key}) => {
         this.props.history.push(key)
 
     }
 
     render() {
         return (
+
+
             <Layout style={{minHeight: '100%'}}>
                 <Header className="header">
-                    <div className="logo" />
-                    <h2 style={{color : '#fff'}}>密码管理系统</h2>
+                    <h2 style={{color : '#fff'}}>公司资源管理系统</h2>
                 </Header>
                 <Layout>
-                    <Sider width={200} className="site-layout-background">
+                    <Sider width={310} className="site-layout-background" trigger={null} collapsible collapsed={this.state.collapsed}>
+
+
                         <Menu
                             onClick={this.menuHandler}
                             mode="inline"
@@ -44,6 +52,7 @@ class FrameOut extends Component {
                             defaultOpenKeys={['sub1']}
                             style={{ height: '100%', borderRight: 0 }}
                         >
+
 
                             {
                                 Menus.map(item => {
@@ -98,7 +107,9 @@ class FrameOut extends Component {
 
                         </Menu>
                     </Sider>
-                    <Layout style={{ padding: '24px' }}>
+
+                    <Layout >
+
                         <Content
                             className="site-layout-background"
                             style={{
