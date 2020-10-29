@@ -5,7 +5,7 @@ import ButtonGroup from "antd/es/button/button-group";
 import {getTopics} from "../../../api"
 import XLSX from 'xlsx';
 
-
+// 这layout, formItemLayout, formItemLayoutWithOutLabel三个样式是调节Form.List的
 const layout = {
     labelCol: {span: 8},
     wrapperCol: {span: 12},
@@ -22,6 +22,13 @@ const formItemLayout = {
     },
 };
 
+const formItemLayoutWithOutLabel = {
+    wrapperCol: {
+        xs: {span: 24, offset: 0},
+        sm: {span: 20, offset: 8},
+    },
+};
+
 // 修改 弹出框
 const editContent = (record) => {
 
@@ -29,13 +36,6 @@ const editContent = (record) => {
     record.childrenEmail.map((data) => {
         emailList.push(data.childEmail)
     })
-
-    const formItemLayoutWithOutLabel = {
-        wrapperCol: {
-            xs: {span: 24, offset: 0},
-            sm: {span: 20, offset: 8},
-        },
-    };
 
     const onFinish = values => {
         console.log('Success:', values);
@@ -62,7 +62,7 @@ const editContent = (record) => {
 
             {/* 编号*/}
             <Form.Item
-                label="key"
+                label="Key编号"
                 name="key"
                 initialValue={record.key}
             >
@@ -71,7 +71,7 @@ const editContent = (record) => {
 
             {/* 姓名 */}
             <Form.Item
-                label="name"
+                label="Name姓名"
                 name="name"
                 rules={[{required: true, message: '请填入您的姓名!'}]}
                 initialValue={record.name}
@@ -81,7 +81,7 @@ const editContent = (record) => {
 
             {/* 主邮箱 */}
             <Form.Item
-                label="parentEmail"
+                label="Parent Email主邮箱"
                 name={"parentEmail"}
                 rules={[{required: true, message: '请填入您的主邮箱!'}]}
                 initialValue={record.parentEmail}
@@ -91,7 +91,7 @@ const editContent = (record) => {
 
             {/* 主邮箱密码 */}
             <Form.Item
-                label="password"
+                label="Password密码"
                 name={"password"}
                 rules={[{required: true, message: '请填入您的主邮箱密码!'}]}
                 initialValue={record.password}
@@ -108,7 +108,7 @@ const editContent = (record) => {
                         {fields.map((field, index) => (
                             <Form.Item
                                 {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-                                label={index === 0 ? 'Children Email' : ''}
+                                label={index === 0 ? 'Children Email子邮箱' : ''}
                                 required={false}
                                 key={field.key}
                             >
@@ -152,7 +152,7 @@ const editContent = (record) => {
             </Form.List>
 
             <Button type="primary" htmlType="submit" style={{width: "100%", marginTop: "10px"}}>
-                Submit
+                提交
             </Button>
 
 
@@ -163,13 +163,6 @@ const editContent = (record) => {
 
 // 新增 弹出框
 const createContent = () => {
-
-    const formItemLayoutWithOutLabel = {
-        wrapperCol: {
-            xs: {span: 24, offset: 0},
-            sm: {span: 20, offset: 8},
-        },
-    };
 
     const onFinish = values => {
         console.log('Success:', values);
@@ -195,7 +188,7 @@ const createContent = () => {
 
             {/* 姓名 */}
             <Form.Item
-                label="name"
+                label="Name姓名"
                 name="name"
                 rules={[{required: true, message: '请填入您的姓名!'}]}
             >
@@ -204,7 +197,7 @@ const createContent = () => {
 
             {/* 主邮箱 */}
             <Form.Item
-                label="parentEmail"
+                label="Parent Email主邮件"
                 name={"parentEmail"}
                 rules={[{required: true, message: '请填入您的主邮箱!'}]}
             >
@@ -213,7 +206,7 @@ const createContent = () => {
 
             {/* 主邮箱密码 */}
             <Form.Item
-                label="password"
+                label="Password密码"
                 name={"password"}
                 rules={[{required: true, message: '请填入您的主邮箱密码!'}]}
             >
@@ -223,13 +216,13 @@ const createContent = () => {
             {/* 次邮箱 */}
             <Form.List name="childrenEmail">
 
-                {(fields, {add, remove}, {errors}) => (
+                {(fields, {add, remove}) => (
                     <>
 
                         {fields.map((field, index) => (
                             <Form.Item
                                 {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-                                label={index === 0 ? 'Children Email' : ''}
+                                label={index === 0 ? 'Children Email子邮箱' : ''}
                                 required={false}
                                 key={field.key}
                             >
@@ -273,7 +266,7 @@ const createContent = () => {
             </Form.List>
 
             <Button type="primary" htmlType="submit" style={{width: "100%", marginTop: "10px"}}>
-                Submit
+                提交
             </Button>
 
 
@@ -347,7 +340,7 @@ class CconestepEmail extends Component {
     }
 
     // 点击 导出Excel文件
-    handleExportAll = (e) => {
+    xmlHandler = (e) => {
         const entozh = {
             "key": "编号",
             "name": "姓名",
@@ -492,12 +485,11 @@ class CconestepEmail extends Component {
             <Card title="CCONESTEP加合移民公司" extra={
                 <ButtonGroup>
                     <Button size={"small"} type="text" danger onClick={this.createHandler}>新增</Button>
-                    <Button size={"small"} type="dashed" danger onClick={this.handleExportAll}>导出Excel</Button>
+                    <Button size={"small"} type="dashed" danger onClick={this.xmlHandler}>导出Excel</Button>
                 </ButtonGroup>
             }>
                 {/*将this.state传递数据*/}
                 <Table
-                    className="components-table-demo-nested"
                     loading={this.state.isLoading}
                     //使用主表
                     columns={this.state.parentColumns}
@@ -507,9 +499,8 @@ class CconestepEmail extends Component {
                         expandedRowRender: this.expandedRowRender,
                         defaultExpandAllRows: true
                     }}
-
-
                 />
+
             </Card>
         );
     }
