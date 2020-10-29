@@ -3,9 +3,6 @@ import {Button, Card, Table} from "antd";
 import ButtonGroup from "antd/es/button/button-group";
 import {getTopics} from "../../../api";
 
-
-
-
 const columns = [
     {
         title: 'Name姓名',

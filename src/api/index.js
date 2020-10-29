@@ -39,7 +39,7 @@ service.interceptors.response.use((response) => {
 
 
 const getTopics = (name) => {
-    return service.get(name)
+    return service.get(`${name}`)
 }
 
 export {

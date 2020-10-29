@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ButtonGroup from "antd/es/button/button-group";
 import {Button, Card, Table} from "antd";
 import {passwordPhoneResponse} from "../sampleResponse"
+import {getTopics} from "../../../api";
 
 const response = passwordPhoneResponse;
 
@@ -46,11 +47,11 @@ const columns = [
         dataIndex: 'icloudPassword',
         key: "icloudPassword"
     },
-    {
-        title: "Previous Users前用户",
-        dataIndex: 'previousUsers',
-        key: "previousUsers"
-    },
+    // {
+    //     title: "Previous Users前用户",
+    //     dataIndex: 'previousUsers',
+    //     key: "previousUsers"
+    // },
     {
         title: 'Action操作',
         key: 'operation',
@@ -69,6 +70,30 @@ const columns = [
 
 
 class PasswordPhone extends Component {
+    // 设置this.state
+    constructor(props) {
+        super(props);
+        this.state = {
+            dataSource: [],
+            total: 100
+
+        }
+    }
+
+    // 渲染前， 获取数据
+    componentDidMount() {
+        // 通过 "/cconestepEmail" 来获取对应页面的数据
+        getTopics("/passwordPhone").then(response => {
+            this.setState(
+                {
+                    dataSource: response.result.list
+                }
+            )
+        }).catch(error => {
+            throw error
+        })
+    }
+
     render() {
         return (
             <Card title="Phone Information手机详细信息" extra={
@@ -78,7 +103,7 @@ class PasswordPhone extends Component {
                 </ButtonGroup>
             }>
 
-                <Table dataSource={response.result.list} columns={columns}/>
+                <Table dataSource={this.state.dataSource} columns={columns}/>
             </Card>
         );
     }
