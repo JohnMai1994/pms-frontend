@@ -40,7 +40,10 @@ class App extends React.Component {
                     <Redirect from="/admin" to={privateRoutes[0].children[0].pathname} exact></Redirect>
                     <Redirect to="/404"></Redirect>
                 </Switch>
+
             </FrameOut>
+
+
 
 
         )

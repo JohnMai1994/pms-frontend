@@ -2,55 +2,54 @@ import React, {Component} from 'react';
 import {Button, Card, Table} from "antd";
 import ButtonGroup from "antd/es/button/button-group";
 import {getTopics} from "../../../api";
-
-
-const parentColumns = [
-    {title: 'Provider手机运营商', dataIndex: 'provider', key: 'provider'},
-
-    {title: 'Type类型', dataIndex: 'type', key: 'type'},
-    {title: 'Account Num手机运营商号码', dataIndex: 'providerNum', key: 'providerNum'},
-    {
-        title: 'Action操作',
-        key: 'operation',
-        render: (record) => {
-            return (
-                <ButtonGroup>
-                    <Button size={"small"} type="primary">修改</Button>
-                    <Button size={"small"} type="danger">删除</Button>
-                </ButtonGroup>
-            )
-        }
-
-    },
-];
-
-const childColumns = [
-    {title: 'Phone电话号码', dataIndex: 'phone', key: 'phone'},
-    {title: 'Service服务', dataIndex: 'service', key: 'service'},
-    {title: 'Plan电话计划', dataIndex: 'plan', key: 'plan'},
-    {title: 'Discount优惠', dataIndex: 'discount', key: 'discount'},
-    {title: 'Cost花费', dataIndex: 'cost', key: 'cost'},
-];
-
-
-
+import CreateButton from "../../../components/CreateButton";
+import ExcelSimpleExportButton from "../../../components/ExcelExportButton/simpleExcel";
+import EditButton from "../../../components/EditButton";
+import DeleteButton from "../../../components/DeleteButton";
 
 class BillPhone extends Component {
     // 设置this.state
     constructor(props) {
         super(props);
         this.state = {
+            // Excel 导出 中英对比
+            entozh: {
+                "phone": "电话号码",
+                "service": "服务",
+                "plan": "电话计划",
+                "discount": "优惠",
+                "cost": "花费",
+                "provider": "运营商",
+                "providerNum": "运营商编号",
+            },
+            // 主表结构
+            columns: [
+                {title: 'Phone电话号码', dataIndex: 'phone', key: 'phone'},
+                {title: 'Service服务', dataIndex: 'service', key: 'service'},
+                {title: 'Plan电话计划', dataIndex: 'plan', key: 'plan'},
+                {title: 'Discount优惠', dataIndex: 'discount', key: 'discount'},
+                {title: 'Cost花费', dataIndex: 'cost', key: 'cost'},
+                {title: 'Provider运营商', dataIndex: 'provider', key: 'provider'},
+                {title: 'Account Num运营商编号', dataIndex: 'providerNum', key: 'providerNum'},
+                {
+                    title: 'Action操作',
+                    key: 'operation',
+                    render: (record) => {
+                        return (
+                            <ButtonGroup>
+                                <EditButton record={record} address={"billPhone"}/>
+                                <DeleteButton record={record} address={"billPhone"}/>
+                            </ButtonGroup>
+                        )
+                    }
+
+                },
+            ],
             dataSource: [],
             total: 100,
-            parentColumns,
-            childColumns,
         }
     }
 
-    expandedRowRender = (data) => {
-
-        return <Table columns={this.state.childColumns} dataSource={data.childrenPhone} pagination={false}/>;
-    };
 
     // 渲染前， 获取数据
     componentDidMount() {
@@ -71,13 +70,14 @@ class BillPhone extends Component {
         return (
             <Card title="Phone Bill手机账单" extra={
                 <ButtonGroup>
-                    <Button size={"small"} type="text" danger>新增</Button>
-                    <Button size={"small"} type="dashed" danger>导出Excel</Button>
+                    <CreateButton columns={this.state.columns} address={"billPhone"}/>
+                    <ExcelSimpleExportButton dataSource={this.state.dataSource} entozh={this.state.entozh}/>
+
                 </ButtonGroup>
             }>
                 <Table
                     className="components-table-demo-nested"
-                    columns={this.state.parentColumns}
+                    columns={this.state.columns}
                     expandable={{
                         expandedRowRender: this.expandedRowRender,
                         defaultExpandAllRows: true

@@ -12,7 +12,6 @@ const isDev = process.env.NODE_ENV === 'development';
 const service = axios.create(
     {
         baseURL: "http://rap2api.taobao.org/app/mock/269060/api/v1"
-
     }
 )
 

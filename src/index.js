@@ -23,15 +23,11 @@ ReactDOM.render(
             */}
             <Switch>
                 {/*1. 私有的操作，必须是在登陆后才可以访问*/}
-
                 <Route path="/admin" render={(rootProps) => {
                     // 到时候做授权的检测
                     return <App {...rootProps} />
                 }}/>
-
-
                 {/*2. 公共的*/}
-
                 {
                     commentRoutes.map((item, index) => {
                         return (

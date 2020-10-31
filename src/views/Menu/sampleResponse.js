@@ -298,133 +298,64 @@ const billPhoneResponse = {
     result: {
         list : [
             {
+                phone: "416-571-5188",
+                service: "Canada text + call + China call",
+                plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
+                discount: "$30 discount",
+                cost : "2320",
                 provider :"Bell",
-                type: "Business",
                 providerNum : "533112557",
-                childrenPhone : [
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "2320"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
 
-                ]
             },
             {
-                provider :"Rogers",
-                type: "Business",
-                providerNum : "796074326",
-                childrenPhone : [
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
+                phone: "416-571-5188",
+                service: "Canada text + call + China call",
+                plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
+                discount: "$30 discount",
+                cost : "2320",
+                provider :"Bell",
+                providerNum : "533112557",
 
-                ]
             },
             {
-                provider :"Rogers",
-                type: "Business",
-                providerNum : "796080141",
-                childrenPhone : [
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
-                    {
-                        phone: "416-571-5188",
-                        service: "Canada text + call + China call",
-                        plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
-                        discount: "$30 discount",
-                        cost : "90"
-                    },
+                phone: "416-571-5188",
+                service: "Canada text + call + China call",
+                plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
+                discount: "$30 discount",
+                cost : "2320",
+                provider :"Bell",
+                providerNum : "533112557",
 
-                ]
+            },
+            {
+                phone: "416-571-5188",
+                service: "Canada text + call + China call",
+                plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
+                discount: "$30 discount",
+                cost : "2320",
+                provider :"Bell",
+                providerNum : "533112557",
+
+            },
+            {
+                phone: "416-571-5188",
+                service: "Canada text + call + China call",
+                plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
+                discount: "$30 discount",
+                cost : "2320",
+                provider :"Bell",
+                providerNum : "533112557",
+
+            },
+            {
+                phone: "416-571-5188",
+                service: "Canada text + call + China call",
+                plan : "$105 + $16 Asian talk - Data 10GB, unlimited call, unlimited text ",
+                discount: "$30 discount",
+                cost : "2320",
+                provider :"Bell",
+                providerNum : "533112557",
+
             },
 
         ]
