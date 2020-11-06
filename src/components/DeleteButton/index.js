@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {Button, Modal} from "antd"
+import {Button, message, Modal} from "antd"
+
+import {remove} from "../../api";
 
 class DeleteButton extends Component {
 
@@ -16,8 +18,18 @@ class DeleteButton extends Component {
                 console.log("用户取消操作")
             },
             onOk: () => {
-                console.log("用户确认操作", record.key)
+
+                console.log("用户确认操作", record._id)
+
+                let apiAddresss = `${this.props.address}/${record._id}`
                 // 发送异步请求，通过接口把当前的这条记录删除调用
+                remove(apiAddresss)
+                    .then(res => {
+                        message.success('删除数据成功！');
+                    })
+                    .catch(error => {
+                        message.error("你需要联系John~")
+                    })
             }
         })
     }

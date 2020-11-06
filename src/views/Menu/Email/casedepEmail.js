@@ -42,8 +42,8 @@ class CasedepEmail extends Component {
                     render: (text, record) => {
                         return (
                             <ButtonGroup>
-                                <EditButton record={record} address={"casedepEmail"}/>
-                                <DeleteButton record={record} address={"casedepEmail"}/>
+                                <EditButton record={record} address={"/casedep-email"}/>
+                                <DeleteButton record={record} address={"/casedep-email"}/>
                             </ButtonGroup>
                         )
                     }
@@ -62,10 +62,11 @@ class CasedepEmail extends Component {
     componentDidMount() {
         this.setState({isLoading: true})
         // 通过 "/cconestepEmail" 来获取对应页面的数据
-        getTopics("/restEmail").then(response => {
+        getTopics("/casedep-email").then(response => {
             this.setState(
                 {
-                    dataSource: response.result.list
+                    dataSource: response.result.list,
+                    total: response.result.total
                 }
             )
         }).catch(error => {
@@ -80,7 +81,7 @@ class CasedepEmail extends Component {
             <Card title="CASES文案部邮箱"
                   extra={
                       <ButtonGroup>
-                          <CreateButton columns={this.state.columns} address={"casedepEmail"}/>
+                          <CreateButton columns={this.state.columns} address={"/casedep-email"}/>
                           <ExcelSimpleExportButton dataSource={this.state.dataSource} entozh={this.state.entozh}/>
                       </ButtonGroup>
                   }>

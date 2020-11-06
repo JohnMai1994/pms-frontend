@@ -80,8 +80,8 @@ class PasswordPhone extends Component {
                         console.log(record)
                         return (
                             <ButtonGroup>
-                                <EditButton record={record} address={"passwordPhone"}/>
-                                <DeleteButton record={record} address={"passwordPhone"}/>
+                                <EditButton record={record} address={"/password-phone"}/>
+                                <DeleteButton record={record} address={"/password-phone"}/>
                             </ButtonGroup>
                         )
                     }
@@ -96,10 +96,11 @@ class PasswordPhone extends Component {
     // 渲染前， 获取数据
     componentDidMount() {
         // 通过 "/cconestepEmail" 来获取对应页面的数据
-        getTopics("/passwordPhone").then(response => {
+        getTopics("/password-phone").then(response => {
             this.setState(
                 {
-                    dataSource: response.result.list
+                    dataSource: response.result.list,
+                    total: response.result.total
                 }
             )
         }).catch(error => {
@@ -111,7 +112,7 @@ class PasswordPhone extends Component {
         return (
             <Card title="Phone Information手机详细信息" extra={
                 <ButtonGroup>
-                    <CreateButton columns={this.state.columns} address={"passwordPhone"}/>
+                    <CreateButton columns={this.state.columns} address={"/password-phone"}/>
                     <ExcelSimpleExportButton dataSource={this.state.dataSource} entozh={this.state.entozh}/>
                 </ButtonGroup>
             }>

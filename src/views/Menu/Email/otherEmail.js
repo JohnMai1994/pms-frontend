@@ -41,8 +41,8 @@ class OtherEmail extends Component {
                     render: (text, record) => {
                         return (
                             <ButtonGroup>
-                                <EditButton record={record} address={"otherEmail"}/>
-                                <DeleteButton record={record} address={"otherEmail"}/>
+                                <EditButton record={record} address={"/other-email"}/>
+                                <DeleteButton record={record} address={"/other-email"}/>
                             </ButtonGroup>
                         )
                     }
@@ -60,10 +60,11 @@ class OtherEmail extends Component {
     componentDidMount() {
         this.setState({isLoading: true})
         // 通过 "/cconestepEmail" 来获取对应页面的数据
-        getTopics("/restEmail").then(response => {
+        getTopics("/other-email").then(response => {
             this.setState(
                 {
-                    dataSource: response.result.list
+                    dataSource: response.result.list,
+                    total: response.result.total
                 }
             )
         }).catch(error => {
@@ -78,7 +79,7 @@ class OtherEmail extends Component {
             <Card title="OTHER其他邮箱"
                   extra={
                       <ButtonGroup>
-                          <CreateButton columns={this.state.columns} address={"otherEmail"}/>
+                          <CreateButton columns={this.state.columns} address={"/other-email"}/>
                           <ExcelSimpleExportButton dataSource={this.state.dataSource} entozh={this.state.entozh}/>
                       </ButtonGroup>
                   }>

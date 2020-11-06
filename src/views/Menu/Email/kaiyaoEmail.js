@@ -42,8 +42,8 @@ class KaiyaoEmail extends Component {
                     render: (text, record) => {
                         return (
                             <ButtonGroup>
-                                <EditButton record={record} address={"kaiyaoEmail"}/>
-                                <DeleteButton record={record} address={"kaiyaoEmail"}/>
+                                <EditButton record={record} address={"/kaiyao-email"}/>
+                                <DeleteButton record={record} address={"/kaiyao-email"}/>
                             </ButtonGroup>
                         )
                     }
@@ -64,7 +64,8 @@ class KaiyaoEmail extends Component {
         getTopics("/kaiyao-email").then(response => {
             this.setState(
                 {
-                    dataSource: response.result.list
+                    dataSource: response.result.list,
+                    total: response.result.total
                 }
             )
         }).catch(error => {
@@ -79,7 +80,7 @@ class KaiyaoEmail extends Component {
             <Card title="KAIYAO凯耀移民公司"
                   extra={
                       <ButtonGroup>
-                          <CreateButton columns={this.state.columns} address={"kaiyaoEmail"}/>
+                          <CreateButton columns={this.state.columns} address={"/kaiyao-email"}/>
                           <ExcelSimpleExportButton dataSource={this.state.dataSource} entozh={this.state.entozh}/>
                       </ButtonGroup>
                   }>

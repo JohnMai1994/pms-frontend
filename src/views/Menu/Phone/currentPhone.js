@@ -42,8 +42,8 @@ class CurrentPhone extends Component {
                         console.log(record)
                         return (
                             <ButtonGroup>
-                                <EditButton record={record} address={"currentPhone"}/>
-                                <DeleteButton record={record} address={"currentPhone"}/>
+                                <EditButton record={record} address={"/current-phone"}/>
+                                <DeleteButton record={record} address={"/current-phone"}/>
                             </ButtonGroup>
                         )
                     }
@@ -57,10 +57,11 @@ class CurrentPhone extends Component {
     // 渲染前， 获取数据
     componentDidMount() {
         // 通过 "/currentPhone" 来获取对应页面的数据
-        getTopics("/currentPhone").then(response => {
+        getTopics("/current-phone").then(response => {
             this.setState(
                 {
-                    dataSource: response.result.list
+                    dataSource: response.result.list,
+                    total: response.result.total
                 }
             )
         }).catch(error => {
@@ -73,7 +74,7 @@ class CurrentPhone extends Component {
         return (
             <Card title="Latest Contact最新电话号码" extra={
                 <ButtonGroup>
-                    <CreateButton columns={this.state.columns} address={"currentPhone"}/>
+                    <CreateButton columns={this.state.columns} address={"/current-phone"}/>
                     <ExcelSimpleExportButton dataSource={this.state.dataSource} entozh={this.state.entozh}/>
                 </ButtonGroup>
             }>

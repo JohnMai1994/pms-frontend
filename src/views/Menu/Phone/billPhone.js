@@ -37,8 +37,8 @@ class BillPhone extends Component {
                     render: (record) => {
                         return (
                             <ButtonGroup>
-                                <EditButton record={record} address={"billPhone"}/>
-                                <DeleteButton record={record} address={"billPhone"}/>
+                                <EditButton record={record} address={"/bill-phone"}/>
+                                <DeleteButton record={record} address={"/bill-phone"}/>
                             </ButtonGroup>
                         )
                     }
@@ -54,10 +54,11 @@ class BillPhone extends Component {
     // 渲染前， 获取数据
     componentDidMount() {
         // 通过 "/billPhone" 来获取对应页面的数据
-        getTopics("/billPhone").then(response => {
+        getTopics("/bill-phone").then(response => {
             this.setState(
                 {
-                    dataSource: response.result.list
+                    dataSource: response.result.list,
+                    total: response.result.total
                 }
             )
         }).catch(error => {
@@ -70,7 +71,7 @@ class BillPhone extends Component {
         return (
             <Card title="Phone Bill手机账单" extra={
                 <ButtonGroup>
-                    <CreateButton columns={this.state.columns} address={"billPhone"}/>
+                    <CreateButton columns={this.state.columns} address={"/bill-phone"}/>
                     <ExcelSimpleExportButton dataSource={this.state.dataSource} entozh={this.state.entozh}/>
 
                 </ButtonGroup>

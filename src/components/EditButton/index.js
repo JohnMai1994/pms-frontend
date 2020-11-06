@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Button, Form, Input, Modal} from "antd"
+import {Button, Form, Input, message, Modal} from "antd"
+import {update} from "../../api"
 
 const layout = {
     labelCol: {span: 8},
@@ -10,25 +11,26 @@ const layout = {
 const editContent = (record, address) => {
 
     const onFinish = values => {
-        console.log('Success:', values);
+
+        let apiAddresss = `${address}/${values._id}`
+        update(apiAddresss, values)
+            .then(res => {
+                message.success('修改数据成功！');
+            })
+            .catch(error => {
+                message.error("恭喜你~需要联系John~")
+            })
     };
 
     const onFinishFailed = errorInfo => {
         console.log('Failed:', errorInfo);
     };
 
-
-    const submitHandle = (e) => {
-        console.log(e)
-    }
-
-
     return (
         <Form
             {...layout}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            onSubmitCapture={submitHandle}
         >
 
 
@@ -38,7 +40,7 @@ const editContent = (record, address) => {
                         return (
                             <Form.Item label={item} name={item} initialValue={record[item]}
                                        rules={[{required: true, message: '请勿留空!'}]}>
-                                <Input disabled={(item === "key" || item === "id")}/>
+                                <Input disabled={(item === "__v" || item === "_id")}/>
                             </Form.Item>
                         )
                     }
@@ -67,7 +69,7 @@ class EditButton extends Component {
             okText: "取消",
             okType: "dashed",
             onOk: () => {
-                console.log("用户取消操作", record.key)
+                console.log("用户取消操作", record._id)
             }
         })
 

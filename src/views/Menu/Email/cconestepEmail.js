@@ -3,7 +3,6 @@ import {Space, Form, Card, Button, Table, Modal, Input} from 'antd';
 import {MinusCircleOutlined, PlusOutlined} from "@ant-design/icons"
 import ButtonGroup from "antd/es/button/button-group";
 import {getTopics} from "../../../api"
-import XLSX from 'xlsx';
 import ExcelComplexExportButton from "../../../components/ExcelExportButton/complexExcel"
 import DeleteButton from "../../../components/DeleteButton";
 
@@ -48,19 +47,12 @@ const editContent = (record) => {
         console.log('Failed:', errorInfo);
     };
 
-
-    const submitHandle = (e) => {
-        console.log(e)
-
-    }
-
     return (
         <Form
             {...layout}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             initialValues={{childrenEmail: emailList}}
-            onSubmitCapture={submitHandle}
         >
 
             {/* 编号*/}

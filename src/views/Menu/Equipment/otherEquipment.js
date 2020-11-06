@@ -14,7 +14,6 @@ class OtherEquipment extends Component {
         super(props);
         this.state = {
             entozh: {
-                "id": "编号",
                 "name": "姓名",
                 "position": "使用区域",
                 "brand": "品牌",
@@ -24,11 +23,6 @@ class OtherEquipment extends Component {
             },
             dataSource: [],
             columns: [
-                {
-                    title: 'Id编号',
-                    dataIndex: 'id',
-                    key: 'id'
-                },
                 {
                     title: "Name设备名称",
                     dataIndex: 'name',
@@ -66,8 +60,8 @@ class OtherEquipment extends Component {
                         console.log(record)
                         return (
                             <ButtonGroup>
-                                <EditButton record={record} address={"otherEquipment"} entozh={this.state.entozh}/>
-                                <DeleteButton record={record} address={"otherEquipment"}/>
+                                <EditButton record={record} address={"/other-equipment"} entozh={this.state.entozh}/>
+                                <DeleteButton record={record} address={"/other-equipment"}/>
                             </ButtonGroup>
                         )
                     }
@@ -82,10 +76,11 @@ class OtherEquipment extends Component {
     // 渲染前， 获取数据
     componentDidMount() {
         // 通过 "/otherEquipment" 来获取对应页面的数据
-        getTopics("/otherEquipment").then(response => {
+        getTopics("/other-equipment").then(response => {
             this.setState(
                 {
-                    dataSource: response.result.list
+                    dataSource: response.result.list,
+                    total: response.result.total
                 }
             )
         }).catch(error => {
@@ -97,7 +92,7 @@ class OtherEquipment extends Component {
         return (
             <Card title="Other Equipment其他设备信息" extra={
                 <ButtonGroup>
-                    <CreateButton columns={this.state.columns} address={"otherEquipment"}/>
+                    <CreateButton columns={this.state.columns} address={"/other-equipment"}/>
                     <ExcelSimpleExportButton dataSource={this.state.dataSource} entozh={this.state.entozh}/>
                 </ButtonGroup>
             }>

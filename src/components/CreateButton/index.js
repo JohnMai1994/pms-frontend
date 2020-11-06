@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Button, Form, Input, Modal} from "antd"
+import {Button, Form, Input, message, Modal} from "antd"
+import {create} from "../../api";
 
 const layout = {
     labelCol: {span: 8},
@@ -9,25 +10,25 @@ const layout = {
 // 新增 弹出窗
 const createContent = (columns, address) => {
     const onFinish = values => {
-        console.log('Success:', values);
+        let apiAddresss = `${address}`
+        create(apiAddresss, values)
+            .then(res => {
+                message.success('新增数据成功！');
+            })
+            .catch(error => {
+                message.error("需要联系John~")
+            })
     };
 
     const onFinishFailed = errorInfo => {
         console.log('Failed:', errorInfo);
     };
 
-
-    const submitHandle = (e) => {
-        console.log(e)
-
-    }
-
     return (
         <Form
             {...layout}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            onSubmitCapture={submitHandle}
         >
 
             {

@@ -42,6 +42,23 @@ const getTopics = (name) => {
     return service.get(`${name}`)
 }
 
+const remove = (address) => {
+    return service.delete(`${address}`)
+}
+
+const update = (address, data) =>{
+    return service.put(`${address}`, data)
+}
+
+const create = (address, data) => {
+    return service.post(`${address}`, data)
+}
+
+
+
 export {
-    getTopics
+    getTopics,
+    remove,
+    update,
+    create
 }
