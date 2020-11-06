@@ -37,8 +37,8 @@ class App extends React.Component {
                     {/*}*/}
 
                     {/*1. 配置默认的 /admin 2. not found*/}
-                    <Redirect from="/admin" to={privateRoutes[0].children[0].pathname} exact></Redirect>
-                    <Redirect to="/404"></Redirect>
+                    <Redirect from="/admin" to={privateRoutes[0].children[0].pathname} exact/>
+                    <Redirect to="/404"/>
                 </Switch>
 
             </FrameOut>

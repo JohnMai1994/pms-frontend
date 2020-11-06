@@ -60,8 +60,8 @@ class KaiyaoEmail extends Component {
     // 渲染前， 获取数据
     componentDidMount() {
         this.setState({isLoading: true})
-        // 通过 "/cconestepEmail" 来获取对应页面的数据
-        getTopics("/restEmail").then(response => {
+        // 通过 "/kaiyao-email" 来获取对应页面的数据
+        getTopics("/kaiyao-email").then(response => {
             this.setState(
                 {
                     dataSource: response.result.list
