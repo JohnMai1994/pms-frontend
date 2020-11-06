@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Button, Card, Table} from "antd";
+import {Button, Card, Image, Table} from "antd";
 import ButtonGroup from "antd/es/button/button-group";
 import {getTopics} from "../../../api";
 import CreateButton from "../../../components/CreateButton";
 import ExcelSimpleExportButton from "../../../components/ExcelExportButton/simpleExcel";
 import EditButton from "../../../components/EditButton";
 import DeleteButton from "../../../components/DeleteButton";
+import office from "../../../picture/office.jpg";
 
 
 class OtherEquipment extends Component {
@@ -98,6 +99,7 @@ class OtherEquipment extends Component {
             }>
 
                 <Table dataSource={this.state.dataSource} columns={this.state.columns}/>
+                <Image width={600} src={office}></Image>
             </Card>
         );
     }

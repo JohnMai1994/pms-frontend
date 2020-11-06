@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Space, Form, Card, Button, Table, Modal, Input} from 'antd';
+import {Space, Form, Card, Button, Table, Modal, Input, message} from 'antd';
 import {MinusCircleOutlined, PlusOutlined} from "@ant-design/icons"
 import ButtonGroup from "antd/es/button/button-group";
-import {getTopics} from "../../../api"
+import {create, getTopics, update} from "../../../api"
 import ExcelComplexExportButton from "../../../components/ExcelExportButton/complexExcel"
 import DeleteButton from "../../../components/DeleteButton";
 
@@ -40,7 +40,33 @@ const editContent = (record) => {
     })
 
     const onFinish = values => {
-        console.log('Success:', values);
+        let apiAddress = `/cconestep-email/${values.key}`;
+        let parentEmail = {}
+        // 自己挖的坑自己填~自己配置关键词
+
+        let childrenEmailList = []
+
+        values.childrenEmail.forEach((value, index) => {
+            const childrenEmail = {
+                key : index + 1,
+                childEmail: value,
+                platform: "GoDaddy"
+            }
+            childrenEmailList.push(childrenEmail);
+        })
+
+        parentEmail["name"] = values.name;
+        parentEmail["parentEmail"] = values.parentEmail;
+        parentEmail["password"] = values.password;
+        parentEmail["childrenEmail"] = childrenEmailList ;
+
+        update(apiAddress, parentEmail)
+            .then(res => {
+                message.success('修改数据成功！');
+            })
+            .catch(error => {
+                message.error("需要联系John~")
+            })
     };
 
     const onFinishFailed = errorInfo => {
@@ -59,7 +85,7 @@ const editContent = (record) => {
             <Form.Item
                 label="Key编号"
                 name="key"
-                initialValue={record.key}
+                initialValue={record._id}
             >
                 <Input disabled={true}/>
             </Form.Item>
@@ -160,7 +186,35 @@ const editContent = (record) => {
 const createContent = () => {
 
     const onFinish = values => {
-        console.log('Success:', values);
+
+        let apiAddress = `/cconestep-email`;
+        let parentEmail = {}
+        // 自己挖的坑自己填~自己配置关键词
+
+        let childrenEmailList = []
+
+        values.childrenEmail.forEach((value, index) => {
+            const childrenEmail = {
+                key : index + 1,
+                childEmail: value,
+                platform: "GoDaddy"
+            }
+            childrenEmailList.push(childrenEmail);
+        })
+
+        parentEmail["name"] = values.name;
+        parentEmail["parentEmail"] = values.parentEmail;
+        parentEmail["password"] = values.password;
+        parentEmail["childrenEmail"] = childrenEmailList ;
+
+
+        create(apiAddress, parentEmail)
+            .then(res => {
+                message.success('新增数据成功！');
+            })
+            .catch(error => {
+                message.error("需要联系John~")
+            })
     };
 
     const onFinishFailed = errorInfo => {
@@ -168,17 +222,11 @@ const createContent = () => {
     };
 
 
-    const submitHandle = (e) => {
-        console.log(e)
-
-    }
-
     return (
         <Form
             {...layout}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            onSubmitCapture={submitHandle}
         >
 
             {/* 姓名 */}
@@ -308,7 +356,7 @@ class CconestepEmail extends Component {
                             <ButtonGroup>
                                 <Button size={"small"} type="primary"
                                         onClick={this.editHandler.bind(this, record)}>修改</Button>
-                                <DeleteButton record={record} address={"cconestepEmail"}/>
+                                <DeleteButton record={record} address={"/cconestep-email"}/>
                             </ButtonGroup>
                         )
                     }
@@ -377,7 +425,7 @@ class CconestepEmail extends Component {
     componentDidMount() {
         this.setState({isLoading: true})
         // 通过 "/cconestepEmail" 来获取对应页面的数据
-        getTopics("/cconestepEmail").then(response => {
+        getTopics("/cconestep-email").then(response => {
             this.setState(
                 {
                     dataSource: response.result.list
