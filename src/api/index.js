@@ -26,19 +26,19 @@ const service = axios.create(
 
 service.interceptors.request.use((config) => {
     // config 代表发送给服务的信息，后期自己需要天厨数据，自己配置即可
-    console.log("请求时的操作",config);
+    console.log("请求时的操作", config);
     return config
 })
 
 service.interceptors.response.use((response) => {
-    console.log("返回时的操作",response);
-    if (response.status === 200) {
+    console.log("返回时的操作", response);
+    if (response.status === 200 || response.status === 201) {
         return response.data
     } else {
         // 统一处理错误
         message.error('获取数据失败，请开启后端or数据库');
     }
-    return
+
 })
 
 
@@ -50,7 +50,7 @@ const remove = (address) => {
     return service.delete(`${address}`)
 }
 
-const update = (address, data) =>{
+const update = (address, data) => {
     return service.put(`${address}`, data)
 }
 
@@ -58,11 +58,16 @@ const create = (address, data) => {
     return service.post(`${address}`, data)
 }
 
+const login = (address, data) => {
+    return service.post(`${address}`, data)
+
+}
 
 
 export {
     getTopics,
     remove,
     update,
-    create
+    create,
+    login
 }

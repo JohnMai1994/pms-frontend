@@ -16,6 +16,7 @@ const createContent = (columns, address) => {
                 message.success('新增数据成功！');
             })
             .catch(error => {
+
                 message.error("需要联系John~")
             })
     };
