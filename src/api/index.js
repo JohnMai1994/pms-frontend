@@ -14,9 +14,7 @@ const service = axios.create(
         // 模拟数据
         // baseURL: "http://rap2api.taobao.org/app/mock/269060/api/v1"
         // 本地数据库
-        // baseURL: "http://127.0.0.1:3000"
-        // 嘿嘿嘿，被你发现了，请联系我wechat：mjd64929
-        baseURL: "http://155.138.134.170:3000"
+        baseURL: "http://127.0.0.1:3000"
     }
 )
 
